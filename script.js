@@ -48,27 +48,51 @@ const startGame = () => {
 };
 
 const logout = () => {
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
     gameContainer.style.display = 'none';
     authContainer.style.display = 'flex';
 };
 
-const registerForm = document.getElementById('register');
-const loginForm = document.getElementById('login');
+const registerForm = document.getElementById('register-form');
+const loginForm = document.getElementById('login-form');
 
 registerForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    // Здесь должен быть код для регистрации пользователя на сервере.
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (localStorage.getItem('username') === username) {
+        alert('Пользователь с таким именем уже существует');
+        return;
+    }
+
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
     alert('Регистрация успешна!');
-    startGame();
 });
 
 loginForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    // Здесь должен быть код для авторизации пользователя на сервере.
-    alert('Авторизация успешна!');
-    startGame();
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+
+    if (localStorage.getItem('username') === username && localStorage.getItem('password') === password) {
+        alert('Авторизация успешна!');
+        startGame();
+    } else {
+        alert('Неверные данные');
+    }
 });
 
 logoutButton.addEventListener('click', logout);
 
-cells.forEach(cell =
+cells.forEach(cell => {
+    cell.addEventListener('click', handleCellClick);
+});
+
+// Проверка, авторизован ли пользователь
+if (localStorage.getItem('username') && localStorage.getItem('password')) {
+    gameContainer.style.display = 'block';
+    authContainer.style.display = 'none';
+}
