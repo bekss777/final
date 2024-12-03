@@ -3,38 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация и Авторизация</title>
+    <title>Регистрация и Крестики-Нолики</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="registrationSection" class="section">
-        <h1>Регистрация</h1>
-        <form id="registrationForm">
-            <label for="regUsername">Имя пользователя:</label>
-            <input type="text" id="regUsername" required><br><br>
-            <label for="regPassword">Пароль:</label>
-            <input type="password" id="regPassword" required><br><br>
-            <button type="submit">Зарегистрироваться</button>
-        </form>
-        <p>Уже есть аккаунт? <a href="javascript:void(0)" onclick="showLogin()">Войти</a></p>
+    <div id="auth-container">
+        <div id="register-form">
+            <h2>Регистрация</h2>
+            <form id="register">
+                <input type="text" id="username" placeholder="Имя пользователя" required>
+                <input type="password" id="password" placeholder="Пароль" required>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+        </div>
+        
+        <div id="login-form">
+            <h2>Авторизация</h2>
+            <form id="login">
+                <input type="text" id="login-username" placeholder="Имя пользователя" required>
+                <input type="password" id="login-password" placeholder="Пароль" required>
+                <button type="submit">Войти</button>
+            </form>
+        </div>
     </div>
 
-    <div id="loginSection" class="section" style="display:none;">
-        <h1>Авторизация</h1>
-        <form id="loginForm">
-            <label for="loginUsername">Имя пользователя:</label>
-            <input type="text" id="loginUsername" required><br><br>
-            <label for="loginPassword">Пароль:</label>
-            <input type="password" id="loginPassword" required><br><br>
-            <button type="submit">Войти</button>
-        </form>
-        <p>Нет аккаунта? <a href="javascript:void(0)" onclick="showRegistration()">Зарегистрироваться</a></p>
-    </div>
-
-    <div id="gameSection" class="section" style="display:none;">
-        <h1>Игра</h1>
-        <p>Добро пожаловать в игру! Это простая игра.</p>
-        <button onclick="alert('Вы выиграли!')">Нажми меня!</button>
+    <div id="game-container" style="display: none;">
+        <h2>Игра "Крестики-Нолики"</h2>
+        <div id="game-board">
+            <div class="row">
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+            </div>
+            <div class="row">
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+            </div>
+            <div class="row">
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+            </div>
+        </div>
+        <button id="logout">Выйти</button>
     </div>
 
     <script src="script.js"></script>
